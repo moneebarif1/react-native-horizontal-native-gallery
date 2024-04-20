@@ -36,6 +36,9 @@ Pod::Spec.new do |s|
     s.dependency "RCTRequired"
     s.dependency "RCTTypeSafety"
     s.dependency "ReactCommon/turbomodule/core"
+    s.dependency "Lightbox"
+    s.dependency "Hero"
+    s.dependency "SDWebImage"
    end
   end    
 end

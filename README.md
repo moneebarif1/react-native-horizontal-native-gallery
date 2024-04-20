@@ -11,7 +11,7 @@ npm install react-native-horizontal-native-gallery
 ## Usage
 
 ```js
-import { multiply } from 'react-native-horizontal-native-gallery';
+import { showLightbox } from 'react-native-horizontal-native-gallery';
 
 // ...
 

@@ -17,6 +17,27 @@ const HorizontalNativeGallery = NativeModules.HorizontalNativeGallery
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return HorizontalNativeGallery.multiply(a, b);
+export interface ImageDetails {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export interface LightBoxImage {
+  imageUrl: string;
+  text?: string;
+  videoUrl?: string;
+}
+
+export function showLightbox(
+  images: LightBoxImage[],
+  startingIndex: number = 0,
+  imageDetails?: ImageDetails
+): Promise<void> {
+  return HorizontalNativeGallery.showLightbox(
+    images,
+    imageDetails,
+    startingIndex
+  );
 }

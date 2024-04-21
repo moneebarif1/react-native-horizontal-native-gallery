@@ -24,7 +24,7 @@ class HorizontalNativeGallery: NSObject {
         height = details["height"] as? CGFloat ?? UIScreen.main.bounds.height
       }
       
-      let initialImages = images.enumerated().compactMap { index, dic -> LightboxImage? in
+      let initialImages = images.enumerated().compactMap { index, dict -> LightboxImage? in
           guard let urlString = dict["imageUrl"] as? String, let url = URL(string: urlString) else {
             return nil // Skip items without a valid URL
           }
@@ -33,8 +33,8 @@ class HorizontalNativeGallery: NSObject {
           return LightboxImage( imageURL: url, text: text, videoUrl: videoUrl)
       }
       
-      LightboxConfig.preload = 1
-      LightboxConfig.loadImage = { imageView, _URL, completion in
+        LightboxConfig.preload = 1
+        LightboxConfig.loadImage = { imageView, _URL, completion in
         DispatchQueue.main.async {
           
           let urlString = _URL.absoluteString

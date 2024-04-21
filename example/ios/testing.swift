@@ -1,3 +1,10 @@
+//
+//  testing.swift
+//  HorizontalNativeGalleryExample
+//
+//  Created by Moneeb Arif on 21/04/2024.
+//
+
 import Foundation
 import UIKit
 import Lightbox
@@ -25,17 +32,12 @@ class HorizontalNativeGallery: NSObject {
       }
       
       let initialImages = images.enumerated().compactMap { index, dict -> LightboxImage? in
-           let urlString = dict["imageUrl"] as? String ?? ""
-           guard let url = URL(string: urlString) else {
-                return nil
+          guard let urlString = dict["imageUrl"] as? String, let url = URL(string: urlString) else {
+            return nil // Skip items without a valid URL
           }
           let text = dict["text"] as? String ?? ""
-        
           let videoUrl = dict["videoUrl"] as? String ?? ""
-          guard let videoUrl = URL(string: videoUrl) else {
-               return nil
-         }
-          return LightboxImage(imageURL:url, text: text , videoURL: videoUrl)
+          return LightboxImage( imageURL: url, text: text, videoUrl: videoUrl)
       }
       
         LightboxConfig.preload = 1
@@ -43,7 +45,7 @@ class HorizontalNativeGallery: NSObject {
         DispatchQueue.main.async {
           
           let urlString = _URL.absoluteString
-          imageView.sd_setImage(with: _URL,placeholderImage:UIImage(named: "placeholder.png"), options: [.highPriority, .retryFailed]) { image, error, cacheType, imageURL in
+          imageView.sd_setImage(with: _URL, options: [.highPriority, .retryFailed]) { image, error, cacheType, imageURL in
             // Check if the larger image was successfully loaded
             if let error = error {
               print("Error loading larger image: \(error.localizedDescription)")
@@ -90,4 +92,6 @@ class HorizontalNativeGallery: NSObject {
 
 // MARK: - LightboxControllerPageDelegate
 extension HorizontalNativeGallery: LightboxControllerPageDelegate {
-    func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {}}
+    func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
+      
+    }}
